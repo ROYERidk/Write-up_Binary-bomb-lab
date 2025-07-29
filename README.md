@@ -4,11 +4,11 @@ Executable ouvre le fichier en argument
 
 NEED -> defuse.txt + gdbCfg
 
-Phase 1
+## Phase 1
 Prends la ligne 1
 Ligne 1 : "I am just a renegade hockey mom."
 
-Phase 2
+## Phase 2
 Prends la ligne 2
 Tableau de 6 int : 1 2 4 8 16 32
 
@@ -41,3 +41,14 @@ Deuxième valeur du tableau doit valoir 2 :
 	l'important est de comprendre que *piVar1 et Pivar1[0] c'est la même chose. Donc on a besoin d'un tableau qui commence par 1 (première étape) et ensuite "piVar1[1] != *piVar1 * 2" la deuxième valeur du tableau doit être égale au double de la première. Ensuite on incrémente donc la deuxième valeur devient la première et la troisième la deuxième. Ainsi de suite jusqu’à la fin du tableau. 
 	
 	En résumé, il nous faut un tableau qui commence par 1, puis chaque nombre qui suit devra être le double du précédent, dans la limite d'un tableau de 6 chiffre.
+
+## Phase 3
+
+prends la 3ème ligne -> 2 arguments -> uint, int -> sinon explosion
+
+switch/case en fonction du premier elements (uint)
+
+il faut (utin > 5) et (int = calcul fait par le switch/case à partir du nombre d'arguments lu par sscanf)
+	(utin > 5) et (int = calcul fait par le switch/case à partir du nombre 2)
+
+ uint pour switch/case doit être > 5 donc switch/case de 0 à 5 inutilisables -> reste que 6 et 7
