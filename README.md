@@ -66,6 +66,8 @@ Donc notre 3eme ligne doit être "4 0"
 
 premier argument est passé à la fonction func4 (passé par edi -> rdi)
 
+RAX commence toujours à 0xe(=14)
+
 	0x55555555571a <func4+5>:	mov    %edx,%eax			met la valeur de edx dans eax (=14)	
 	0x55555555571c <func4+7>:	sub    %esi,%eax			soustrait esi à eax (14 - 0 = 14)
 	0x55555555571e <func4+9>:	mov    %eax,%ebx			met eax dans ebx (=14)
