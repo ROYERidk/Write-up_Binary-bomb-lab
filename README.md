@@ -42,11 +42,18 @@ En résumé, il nous faut un tableau qui commence par 1, puis chaque nombre qui 
 
 ## Phase 3
 
+4 0
+
 prends la 3ème ligne -> 2 arguments -> uint, int -> sinon explosion
 
 switch/case en fonction du premier elements (uint)
 
-il faut (utin > 5) et (int = calcul fait par le switch/case à partir du nombre d'arguments lu par sscanf)
-	(utin > 5) et (int = calcul fait par le switch/case à partir du nombre 2)
+il faut (utin < 5) et (int = calcul fait par le switch/case à partir du nombre d'arguments lu par sscanf)
+	(utin < 5) et (int = calcul fait par le switch/case à partir du nombre 2)
 
- uint pour switch/case doit être > 5 donc switch/case de 0 à 5 inutilisables -> reste que 6 et 7
+ uint pour switch/case doit être > 5 donc switch/case de 6 et 7 inutilisables -> reste que 0 à 5
+
+Si on prends 4 en premier argument, on tombe dans le case 4, comme il n'y à pas de break on continue de passer dans chaque case suivante, 4 -> 5 -> 6 -> 7
+Cela donne eax = 0 + 0x7e - 0x7e + 0x7e - 0x7e = 0
+Donc notre 3eme ligne doit être "4 0"
+ 
