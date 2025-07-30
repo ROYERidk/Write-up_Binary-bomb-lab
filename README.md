@@ -59,5 +59,20 @@ Donc notre 3eme ligne doit être "4 0"
  
 ## Phase 4
 
+premier argument est passé à la fonction func4 (passé par edi -> rdi)
+
+   0x55555555571a <func4+5>:	mov    %edx,%eax	met la valeur de edx dans eax (=14)	
+   0x55555555571c <func4+7>:	sub    %esi,%eax	soustrait esi à eax (14 - 0 = 14)
+   0x55555555571e <func4+9>:	mov    %eax,%ebx	met eax dans ebx (=14)
+   0x555555555720 <func4+11>:	shr    $0x1f,%ebx	décale ebx de 31 bits (0x1f = 31) -> ebx = 0
+   0x555555555723 <func4+14>:	add    %eax,%ebx	ajoute eax à ebx (0 + 14 = 14)
+   0x555555555725 <func4+16>:	sar    %ebx		divise ebx par 2 (14 / 2 = 7)
+   0x555555555727 <func4+18>:	add    %esi,%ebx	ajoute esi à ebx (7 + 0 = 7)
+   0x555555555729 <func4+20>:	cmp    %edi,%ebx	compare ebx par rapport à edi (ebx = 8 > edi = 7) [edi est notre argument donc c'est ici qu'il va falloir savoir si on veut jump à +30 ou +42]
+   0x55555555572b <func4+22>:	jg     0x555555555733 <func4+30>
+   0x55555555572d <func4+24>:	jl     0x55555555573f <func4+42>
+
 rsp > 14
-1 des deux arguments dans edi
+
+
+
