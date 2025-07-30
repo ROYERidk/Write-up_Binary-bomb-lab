@@ -94,7 +94,7 @@ Voici le contenu du programme à +30 :
    0x555555555733 <func4+30>:	lea    -0x1(%rbx),%edx			rbx -1 dans edx (décrémente rbx)
    0x555555555736 <func4+33>:	call   0x555555555715 <func4>		appel récursif
 
-
+/!\ Si ebx = edi -> return /!\
 
 
 rsp > 14
