@@ -1,8 +1,12 @@
 # Work
 
 Executable ouvre le fichier en argument
+il lit une ligne par phase (6 phases)
+ligne 1 -> désamorce phase 1
+ligne 2 -> désamorce phase 2
+etc...
 
-NEED -> defuse.txt + gdbCfg
+NEED -> defuse.txt + gdbcfg
 
 ## Phase 1
 Prends la ligne 1
@@ -58,41 +62,43 @@ Cela donne eax = 0 + 0x7e - 0x7e + 0x7e - 0x7e = 0
 Donc notre 3eme ligne doit être "4 0"
  
 ## Phase 4
+**fait avec seulement GDB**
 
 premier argument est passé à la fonction func4 (passé par edi -> rdi)
 
-   0x55555555571a <func4+5>:	mov    %edx,%eax			met la valeur de edx dans eax (=14)	
-   0x55555555571c <func4+7>:	sub    %esi,%eax			soustrait esi à eax (14 - 0 = 14)
-   0x55555555571e <func4+9>:	mov    %eax,%ebx			met eax dans ebx (=14)
-   0x555555555720 <func4+11>:	shr    $0x1f,%ebx			décale ebx de 31 bits (0x1f = 31) -> ebx = 0
-   0x555555555723 <func4+14>:	add    %eax,%ebx			ajoute eax à ebx (0 + 14 = 14)
-   0x555555555725 <func4+16>:	sar    %ebx				divise ebx par 2 (14 / 2 = 7)
-   0x555555555727 <func4+18>:	add    %esi,%ebx			ajoute esi à ebx (7 + 0 = 7)
-   0x555555555729 <func4+20>:	cmp    %edi,%ebx			compare ebx par rapport à edi (ebx = 7 > edi = 8) [edi est notre argument donc c'est ici qu'il va falloir savoir si on veut jump à +30 ou +42]
-   0x55555555572b <func4+22>:	jg     0x555555555733 <func4+30>	jg = jump if greater	
-   0x55555555572d <func4+24>:	jl     0x55555555573f <func4+42>	jl = jump if less	DANS CE CAS LA on jump ici, on va à +42
+	0x55555555571a <func4+5>:	mov    %edx,%eax			met la valeur de edx dans eax (=14)	
+	0x55555555571c <func4+7>:	sub    %esi,%eax			soustrait esi à eax (14 - 0 = 14)
+	0x55555555571e <func4+9>:	mov    %eax,%ebx			met eax dans ebx (=14)
+	0x555555555720 <func4+11>:	shr    $0x1f,%ebx			décale ebx de 31 bits (0x1f = 31) -> ebx = 0
+	0x555555555723 <func4+14>:	add    %eax,%ebx			ajoute eax à ebx (0 + 14 = 14)
+	0x555555555725 <func4+16>:	sar    %ebx				divise ebx par 2 (14 / 2 = 7)
+	0x555555555727 <func4+18>:	add    %esi,%ebx			ajoute esi à ebx (7 + 0 = 7)
+	0x555555555729 <func4+20>:	cmp    %edi,%ebx			compare ebx par rapport à edi (ebx = 7 > edi = 8) [edi est notre argument donc c'est ici qu'il va falloir savoir si on veut jump à +30 ou +42]
+	0x55555555572b <func4+22>:	jg     0x555555555733 <func4+30>	jg = jump if greater	
+	0x55555555572d <func4+24>:	jl     0x55555555573f <func4+42>	jl = jump if less	DANS CE CAS LA on jump ici, on va à +42
 
 Voici le contenu du programme à +42 :
-   0x55555555573f <func4+42>:	lea    0x1(%rbx),%esi			calcul rbx + 1 (7 + 1) et l'assigne à esi (incrémente esi) [n'oublions pas que rsi est le deuxième argument passé pour les fonctions, on dirait qu'il incrémente un compteur]
-   0x555555555742 <func4+45>:	call   0x555555555715 <func4>		appel récursif à lui même donc on recommence ce qui se passe au dessus mais esi vaut 1 maintenant
-   0x555555555747 <func4+50>:	add    %eax,%ebx			/*standby*/
-   0x555555555749 <func4+52>:	jmp    0x55555555572f <func4+26>
+	
+ 	0x55555555573f <func4+42>:	lea    0x1(%rbx),%esi			calcul rbx + 1 (7 + 1) et l'assigne à esi (incrémente esi) [n'oublions pas que rsi est le deuxième argument passé pour les fonctions, on dirait qu'il incrémente un compteur]
+	0x555555555742 <func4+45>:	call   0x555555555715 <func4>		appel récursif à lui même donc on recommence ce qui se passe au dessus mais esi vaut 1 maintenant
+   	0x555555555747 <func4+50>:	add    %eax,%ebx			/*standby*/
+   	0x555555555749 <func4+52>:	jmp    0x55555555572f <func4+26>
 
-   0x55555555571a <func4+5>:	mov    %edx,%eax			met la valeur de edx dans eax (=14)	
-   0x55555555571c <func4+7>:	sub    %esi,%eax			soustrait esi à eax (14 - 8 = 6)
-   0x55555555571e <func4+9>:	mov    %eax,%ebx			met eax dans ebx (=6)
-   0x555555555720 <func4+11>:	shr    $0x1f,%ebx			décale ebx de 31 bits (0x1f = 31) -> ebx = 0
-   0x555555555723 <func4+14>:	add    %eax,%ebx			ajoute eax à ebx (0 + 6 = 6)
-   0x555555555725 <func4+16>:	sar    %ebx				divise ebx par 2 (6 / 2 = 3)
-   0x555555555727 <func4+18>:	add    %esi,%ebx			ajoute esi à ebx (8 + 3 = 11)
-   0x555555555729 <func4+20>:	cmp    %edi,%ebx			compare ebx par rapport à edi (ebx = 11 > edi = 8) [edi est notre argument donc c'est ici qu'il va falloir savoir si on veut jump à +30 ou +42]
-   0x55555555572b <func4+22>:	jg     0x555555555733 <func4+30>	jg = jump if greater	DANS CE CAS LA on jump ici, on va à +30
-   0x55555555572d <func4+24>:	jl     0x55555555573f <func4+42>	jl = jump if less	
+   	0x55555555571a <func4+5>:	mov    %edx,%eax			met la valeur de edx dans eax (=14)	
+   	0x55555555571c <func4+7>:	sub    %esi,%eax			soustrait esi à eax (14 - 8 = 6)
+   	0x55555555571e <func4+9>:	mov    %eax,%ebx			met eax dans ebx (=6)
+   	0x555555555720 <func4+11>:	shr    $0x1f,%ebx			décale ebx de 31 bits (0x1f = 31) -> ebx = 0
+   	0x555555555723 <func4+14>:	add    %eax,%ebx			ajoute eax à ebx (0 + 6 = 6)
+   	0x555555555725 <func4+16>:	sar    %ebx				divise ebx par 2 (6 / 2 = 3)
+   	0x555555555727 <func4+18>:	add    %esi,%ebx			ajoute esi à ebx (8 + 3 = 11)
+   	0x555555555729 <func4+20>:	cmp    %edi,%ebx			compare ebx par rapport à edi (ebx = 11 > edi = 8) [edi est notre argument donc c'est ici qu'il va falloir savoir si on veut jump à +30 ou +42]
+   	0x55555555572b <func4+22>:	jg     0x555555555733 <func4+30>	jg = jump if greater	DANS CE CAS LA on jump ici, on va à +30
+   	0x55555555572d <func4+24>:	jl     0x55555555573f <func4+42>	jl = jump if less	
 
 Voici le contenu du programme à +30 :
 
-   0x555555555733 <func4+30>:	lea    -0x1(%rbx),%edx			rbx -1 dans edx (décrémente rbx)
-   0x555555555736 <func4+33>:	call   0x555555555715 <func4>		appel récursif
+   	0x555555555733 <func4+30>:	lea    -0x1(%rbx),%edx			rbx -1 dans edx (décrémente rbx)
+   	0x555555555736 <func4+33>:	call   0x555555555715 <func4>		appel récursif
 
 /!\ Si ebx = edi -> return /!\
 
@@ -101,15 +107,10 @@ si eax != 10 on explose
 donc on veut que eax = 10
 si c'est bon :
 on check si notre deuxième argument vaut 0xa(=10)
-	0x55555555579e <phase_4+83>:	cmpl   $0xa,0x4(%rsp)	cette ligne compare la valeur contenue à l'adresse rsp+4 avec 10 (on comprends assez logiquement que c'est notre deuxième argument, suffit de la changer pour voir que rsp+4 change. Surtout qu'un int fait 4 bits et que la on accède donc tout pile au deuxième int)
+	
+ 	0x55555555579e <phase_4+83>:	cmpl   $0xa,0x4(%rsp)	cette ligne compare la valeur contenue à l'adresse rsp+4 avec 10 (on comprends assez logiquement que c'est notre deuxième argument, suffit de la changer pour voir que rsp+4 change. Surtout qu'un int fait 4 bits et que la on accède donc tout pile au deuxième int)
 si oui GG !
 
 Maintenant il faut trouver comment avoir 10 dans rax et c'est GG !
 On ne peut pas avoir plus de 14 en premier argument sinon on explose !
 comme c'est un int -> on peut mettre [0;14]
-
-
-rsp > 14
-
-
-
