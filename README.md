@@ -114,3 +114,5 @@ si oui GG !
 Maintenant il faut trouver comment avoir 10 dans rax et c'est GG !
 On ne peut pas avoir plus de 14 en premier argument sinon on explose !
 comme c'est un int -> on peut mettre [0;14]
+
+la solution est "3 10"
