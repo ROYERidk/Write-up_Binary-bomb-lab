@@ -96,7 +96,18 @@ Voici le contenu du programme à +30 :
 
 /!\ Si ebx = edi -> return /!\
 
-après notre func4 on compare directement eax à 10 (eax 32 bits, rax 64 bits, la valeur de retour) 
+après notre func4 on compare directement eax à 10 (eax 32 bits, rax 64 bits, la valeur de retour)
+si eax != 10 on explose
+donc on veut que eax = 10
+si c'est bon :
+on check si notre deuxième argument vaut 0xa(=10)
+	0x55555555579e <phase_4+83>:	cmpl   $0xa,0x4(%rsp)	cette ligne compare la valeur contenue à l'adresse rsp+4 avec 10 (on comprends assez logiquement que c'est notre deuxième argument, suffit de la changer pour voir que rsp+4 change. Surtout qu'un int fait 4 bits et que la on accède donc tout pile au deuxième int)
+si oui GG !
+
+Maintenant il faut trouver comment avoir 10 dans rax et c'est GG !
+On ne peut pas avoir plus de 14 en premier argument sinon on explose !
+comme c'est un int -> on peut mettre [0;14]
+
 
 rsp > 14
 
