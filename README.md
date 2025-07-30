@@ -67,6 +67,7 @@ Donc notre 3eme ligne doit être "4 0"
 premier argument est passé à la fonction func4 (passé par edi -> rdi)
 
 RAX commence toujours à 0xe(=14)
+ICI j'avais 8 en premier argument
 
 	0x55555555571a <func4+5>:	mov    %edx,%eax			met la valeur de edx dans eax (=14)	
 	0x55555555571c <func4+7>:	sub    %esi,%eax			soustrait esi à eax (14 - 0 = 14)
@@ -118,3 +119,6 @@ On ne peut pas avoir plus de 14 en premier argument sinon on explose !
 comme c'est un int -> on peut mettre [0;14]
 
 la solution est "3 10"
+
+pourquoi 3 : La première étape de func4 est globalement d'avoir 14 dans edx, de le diviser par 2 avant de le comparer avec notre argument. Donc en observant le code si on peut rapidement trouvé que si on met 3, nous allons tombé dans *jg     0x555555555733 <func4+30>	jg = jump if greater* qui va simplement décrémenté ebx (7 - 1) et faire un appel récursif qui va prendre edx à 6, le diviser par 2 et sortir de notre func4 car 3 == 3.
+
