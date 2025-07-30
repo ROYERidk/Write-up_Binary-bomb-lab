@@ -57,3 +57,7 @@ Si on prends 4 en premier argument, on tombe dans le case 4, comme il n'y à pas
 Cela donne eax = 0 + 0x7e - 0x7e + 0x7e - 0x7e = 0
 Donc notre 3eme ligne doit être "4 0"
  
+## Phase 4
+
+rsp > 14
+1 des deux arguments dans edi
