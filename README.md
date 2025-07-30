@@ -121,4 +121,7 @@ comme c'est un int -> on peut mettre [0;14]
 la solution est "3 10"
 
 pourquoi 3 : La première étape de func4 est globalement d'avoir 14 dans edx, de le diviser par 2 avant de le comparer avec notre argument. Donc en observant le code si on peut rapidement trouvé que si on met 3, nous allons tombé dans *jg     0x555555555733 <func4+30>	jg = jump if greater* qui va simplement décrémenté ebx (7 - 1) et faire un appel récursif qui va prendre edx à 6, le diviser par 2 et sortir de notre func4 car 3 == 3.
+Enfin, il faut aussi comprendre que le résultat de la fonction (dans RAX) est l'addition de chaque retour récursif de cette fonction.
+C'est pour cela que 3 rempli son travail, car il crée deux passage dans func4, un premier qui renvoie 7 et un deuxième qui renvoie 3.
+7 + 3 = 10. Comme nous avions besoin de rax == 10, GG !
 
