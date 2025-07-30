@@ -125,3 +125,4 @@ Enfin, il faut aussi comprendre que le résultat de la fonction (dans RAX) est l
 C'est pour cela que 3 rempli son travail, car il crée deux passage dans func4, un premier qui renvoie 7 et un deuxième qui renvoie 3.
 7 + 3 = 10. Comme nous avions besoin de rax == 10, GG !
 
+Dans ghidra, on observe directement le calcul, c'est bien plus simple, mais moins intéressant pour s'habituer à manipuler de l'assembleur dans un débugger comme GDB.
