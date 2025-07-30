@@ -96,6 +96,7 @@ Voici le contenu du programme à +30 :
 
 /!\ Si ebx = edi -> return /!\
 
+après notre func4 on compare directement eax à 10 (eax 32 bits, rax 64 bits, la valeur de retour) 
 
 rsp > 14
 
