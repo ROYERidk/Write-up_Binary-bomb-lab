@@ -126,3 +126,20 @@ C'est pour cela que 3 rempli son travail, car il crée deux passage dans func4, 
 7 + 3 = 10. Comme nous avions besoin de rax == 10, GG !
 
 Dans ghidra, on observe directement le calcul, c'est bien plus simple, mais moins intéressant pour s'habituer à manipuler de l'assembleur dans un débugger comme GDB.
+
+## Phase 5
+
+2 int en arguments sinon on explose
+nous nommerons nos deux argument respectivement *a* et *b*
+
+un ET logique est fait entre *a* et 0xf, puis stocker à la place de ce dernier (seulement les 4 bits de poids faible sont gardés = on fait *a* modulo 16). Ensuite on voit que si *a* vaut 0xf, on explose.
+Si on veut ne pas exploser il faut que *a* contienent au moins un 0 dans les 4 bits de poid faible de sa valeur en binaire donc on exclu simplement 15, il nous reste donc [0;14] comme possibilités.
+
+Deux variables sont initialisées à 0 on les nommera respectivement *x* et *y*.
+ensuite on boucle tant que *a* qui ne devait pas valoir 0xf vale 0xf.
+
+La boucle se décrit comme tel :
+*x* semble être un compteur qui s'incrémente à chaque passage de boucle
+*a* est utilisé dans un calcul qui s'assigne à elle même. a = *valeur d'un array* + a * 4.
+enfin, y = y + a
+
