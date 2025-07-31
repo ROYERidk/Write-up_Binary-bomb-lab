@@ -140,7 +140,10 @@ ensuite on boucle tant que *a* qui ne devait pas valoir 0xf vale 0xf.
 
 La boucle se décrit comme tel :
 *y* semble être un compteur qui s'incrémente à chaque passage de boucle
-*a* est utilisé dans un calcul qui s'assigne à elle même. a = *valeur d'un array* + a * 4.
-enfin, x = x + a -> c'est la somme de chaque valeur de *a* à chaque tour de boucle.
+*a = tab[a]*. tab est un tableau de int dans le binaire à l'adresse de rsi. 
+enfin, *x = x + a* -> c'est la somme de chaque valeur de *a* à chaque tour de boucle.
 
 Pour désomorcer cette phase il faut que *y* == Oxf = 15 (15 tour de boucle) et *b* == x [après la boucle]
+
+Donc pour flag cette 5ème phase, il faut :
+faire exactement 15 tour de boucle ET connaitre à l'avance la somme de chaque *a* à chaque passage de boucle.
