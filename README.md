@@ -152,5 +152,10 @@ Voici le contenu du tableau à chaque index :
 <img width="372" height="825" alt="image" src="https://github.com/user-attachments/assets/36ac8623-3826-43ef-ae11-1e36f774293a" />
 
 Maintenant il faut réfléchir à comment tombé sur 0xf au 15e tour de boucle.
+Il suffit de faire 15 fois la boucle à l'envers en partant de 0xf pour savoir à quelle valeur démarrer : 
 5 (0x12) -> 12 (0x3) -> 3 (0x7) -> 7 (0x11) -> 11 (0x13) -> 13 (0x9) -> 9 (0x4) -> 4 (0x8) -> 8 (0x0) -> 0 (0xa) -> 10 (0x1) -> 1 (0x2) -> 2 (0xe) -> 14 (0x6) -> 6 (0xf)
 
+Enfin, la solution est "5 115". 
+Il est important de noté que la première valeur (ici 5) n'est pas ajouter à la somme finale, elle sert seulement de points de départ. Donc on additionne en partant de 12.
+
+12 + 3 + 7 + 11 + 13 + 9 + 4 + 8 + 0 + 10 + 1 + 2 + 14 + 6 + 15 = 115.
