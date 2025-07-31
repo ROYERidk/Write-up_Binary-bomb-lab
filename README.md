@@ -147,3 +147,5 @@ Pour désomorcer cette phase il faut que *y* == Oxf = 15 (15 tour de boucle) et 
 
 Donc pour flag cette 5ème phase, il faut :
 faire exactement 15 tour de boucle ET connaitre à l'avance la somme de chaque *a* à chaque passage de boucle.
+
+<img width="372" height="825" alt="image" src="https://github.com/user-attachments/assets/36ac8623-3826-43ef-ae11-1e36f774293a" />
