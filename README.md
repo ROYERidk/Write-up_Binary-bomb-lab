@@ -152,5 +152,5 @@ Voici le contenu du tableau à chaque index :
 <img width="372" height="825" alt="image" src="https://github.com/user-attachments/assets/36ac8623-3826-43ef-ae11-1e36f774293a" />
 
 Maintenant il faut réfléchir à comment tombé sur 0xf au 15e tour de boucle.
-5 (0x12) -> 12 (0x3) -> 3 (0x7) -> 7 (0x11) -> 11 (0x13) -> 13 (0x9) -> 9 (0x4) -> 4 (0x8) -> 8 (0x0) -> 0 (0xa) -> 10 (0x1) -> 1 (0x2) -> 2 (0xe) -> 14 (0x6) -> 6 (0xf)<img width="644" height="69" alt="image" src="https://github.com/user-attachments/assets/2a889ab4-3125-41f9-8e0a-18b71e4faff7" />
+5 (0x12) -> 12 (0x3) -> 3 (0x7) -> 7 (0x11) -> 11 (0x13) -> 13 (0x9) -> 9 (0x4) -> 4 (0x8) -> 8 (0x0) -> 0 (0xa) -> 10 (0x1) -> 1 (0x2) -> 2 (0xe) -> 14 (0x6) -> 6 (0xf)
 
