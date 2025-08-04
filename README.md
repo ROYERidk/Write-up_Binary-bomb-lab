@@ -176,3 +176,14 @@ Dans l'image suivante on peut observer pour chaque node sa valeur, son numéro p
 Il faut donc comprendre qu'il va falloir donner en arguments les noeuds dans l'ordre décroissant, c'est à dire :
 5 4 3 1 6 2
 
+## Secret phase
+
+On doit rajouter DrEvil à la fin du solve de la phase 4 pour arriver dans la phase secrète.
+
+Secret phase attends une strings qui sera transformée en int.
+Ce int doit être < 1000
+
+une fonction fun7 est appellée, il faudra que son retour soit = 5 pour defuse cette phase
+fun7 prends un tableau de int en 1er argument et notre argument en 2eme
+
+(faut que je dumb le tableau pour pouvoir voir les calculs qui sont fait pour atteindre 5)
