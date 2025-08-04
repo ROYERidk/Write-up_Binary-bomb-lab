@@ -159,3 +159,7 @@ Enfin, la solution est "5 115".
 Il est important de noté que la première valeur (ici 5) n'est pas ajouter à la somme finale, elle sert seulement de points de départ. Donc on additionne en partant de 12.
 
 12 + 3 + 7 + 11 + 13 + 9 + 4 + 8 + 0 + 10 + 1 + 2 + 14 + 6 + 15 = 115.
+
+## Phase 6
+
+mes 6 arguments sont dans R13
