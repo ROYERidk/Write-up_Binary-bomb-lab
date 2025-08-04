@@ -163,3 +163,16 @@ Il est important de noté que la première valeur (ici 5) n'est pas ajouter à l
 ## Phase 6
 
 mes 6 arguments sont dans R13
+
+La première étape sert à vérifier qu'on ne met pas deux fois le même numéro dans nos 6 arguments et toujours de numéros < 7
+
+deuxièmement, le programme va aller chercher la valeur du noeud associé à notre premier argument -> récup la valeur de ce noeud -> aller chercher le noeud associé à notre 2eme argument -> récup la valeur de ce noeud, s'assurer que notre deuxième noeud à une valeur inférieure au premier, ainsi de suite...
+
+Dans l'image suivante on peut observer pour chaque node sa valeur, son numéro puis la suivante.
+<img width="241" height="113" alt="image" src="https://github.com/user-attachments/assets/a644c6a3-b315-46ac-9c28-083bb7f61c0e" />
+
+
+
+Il faut donc comprendre qu'il va falloir donner en arguments les noeuds dans l'ordre décroissant, c'est à dire :
+5 4 3 1 6 2
+
