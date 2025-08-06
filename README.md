@@ -209,7 +209,7 @@ On retrouve un peu la même idée que dans la phase 6. On navigue comme cela :
 <br>
 <img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/fcb2f67e-cdef-44d3-9974-31713101b13e" />
 <br>
-<img width="319" height="274" alt="image" src="https://github.com/user-attachments/assets/c9ec4318-b31e-412d-ab7f-97cd7ac42eca" />
+<img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/c9ec4318-b31e-412d-ab7f-97cd7ac42eca" />
 <br>
 Légende : ROUGE -> noeud, BLEUE -> valeur du noeud, ORANGE -> adresse du noeud n+2, JAUNE -> adresse du noeud n+4.
 
