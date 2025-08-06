@@ -203,6 +203,7 @@ Donc, quand on fait un appel à param_1 + x, on accède au tableau à distance x
 <img width="372" height="1625" alt="image" src="https://github.com/user-attachments/assets/c85d2fbd-3c80-415a-97dc-011884bf4142" />
 
 On retrouve un peu la même idée que dans la phase 6. On navigue comme cela : 
+
 <img width="372" height="825" alt="image" src="https://github.com/user-attachments/assets/fcb2f67e-cdef-44d3-9974-31713101b13e" />
 
 
