@@ -186,4 +186,16 @@ Ce int doit être < 1000
 une fonction fun7 est appellée, il faudra que son retour soit = 5 pour defuse cette phase
 fun7 prends un tableau de int en 1er argument et notre argument en 2eme
 
+        00101987 48 85 ff        TEST       param_1,param_1 ## Check si le tableau param_1 est bien initialisé
+
+2 CAS :
+	if tab[0] > notre argument :
+ 		iVar1 = call fun7 avec l'élement 2 index plus loin que l'actuel
+		iVar1 = iVar1 * 2	
+ 	sinon iVar1 = 0;
+ 	puis if tab[0] == notre argument
+ 		iVar1 = call fun7 avec l'élement 4 index plus loin que l'actuel
+	iVar1 = iVar1 * 2 + 1
+ 
 (faut que je dumb le tableau pour pouvoir voir les calculs qui sont fait pour atteindre 5)
+
