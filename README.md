@@ -206,7 +206,10 @@ J'ai trouvé 7 tableaux différents : n1, n21, n22, n31, n32, n33, n34, n41, n42
 C'est une chaine car dans ce dumb que j'ai réussi à trouver en me baladant autour de l'adresse de n1 (le premier arguments passé par défault à fun7) :
 <img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/c85d2fbd-3c80-415a-97dc-011884bf4142" />
 On retrouve un peu la même idée que dans la phase 6. On navigue comme cela : 
-
+<br>
 <img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/fcb2f67e-cdef-44d3-9974-31713101b13e" />
-
+<br>
+<img width="319" height="274" alt="image" src="https://github.com/user-attachments/assets/c9ec4318-b31e-412d-ab7f-97cd7ac42eca" />
+<br>
+Légende : ROUGE -> noeud, BLEUE -> valeur du noeud, ORANGE -> adresse du noeud n+2, JAUNE -> adresse du noeud n+4.
 
