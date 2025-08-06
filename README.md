@@ -198,4 +198,5 @@ fun7 prends un tableau de int en 1er argument et notre argument en 2eme
 	iVar1 = iVar1 * 2 + 1
  
 (faut que je dumb le tableau pour pouvoir voir les calculs qui sont fait pour atteindre 5)
+le tableau n1 : <img width="157" height="146" alt="image" src="https://github.com/user-attachments/assets/5fc9948b-e0c0-4a99-9815-b22821662d8f" />
 
