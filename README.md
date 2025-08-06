@@ -213,3 +213,4 @@ On retrouve un peu la même idée que dans la phase 6. On navigue comme cela :
 <br>
 Légende : ROUGE -> noeud, BLEUE -> valeur du noeud, ORANGE -> adresse du noeud n+2, JAUNE -> adresse du noeud n+4.
 
+Le solve est 47 !
