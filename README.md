@@ -202,12 +202,7 @@ J'ai trouvé 7 tableaux différents (dans cet ordre) : n1, n21, n22, n32, n33, n
 Donc, quand on fait un appel à param_1 + x, on accède au tableau à distance x de notre tableau actuel OU alors c'est une chaine car dans ce dumb que j'ai réussi à trouver en me baladant autour de l'adresse de n1 (le premier arguments passé par défault à fun7) :
 <img width="372" height="1625" alt="image" src="https://github.com/user-attachments/assets/c85d2fbd-3c80-415a-97dc-011884bf4142" />
 
-On retrouve un peu la même idée que dans la phase 6. On navigue comme cela : <img width="372" height="825" alt="image" src="https://github.com/user-attachments/assets/fcb2f67e-cdef-44d3-9974-31713101b13e" />
+On retrouve un peu la même idée que dans la phase 6. On navigue comme cela : 
+<img width="372" height="825" alt="image" src="https://github.com/user-attachments/assets/fcb2f67e-cdef-44d3-9974-31713101b13e" />
 
-
-
-
-(faut que je dumb le tableau pour pouvoir voir les calculs qui sont fait pour atteindre 5)
-le tableau n1 : 
-<img width="372" height="825" alt="image" src="https://github.com/user-attachments/assets/5fc9948b-e0c0-4a99-9815-b22821662d8f" />
 
