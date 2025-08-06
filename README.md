@@ -1,4 +1,4 @@
-<img width="157" height="146" alt="image" src="https://github.com/user-attachments/assets/6d955704-2dac-49e3-9179-bd452e6fdc67" /># Work
+# Work
 
 Executable ouvre le fichier en argument
 il lit une ligne par phase (6 phases)
