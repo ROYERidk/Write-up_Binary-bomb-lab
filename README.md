@@ -189,7 +189,9 @@ fun7 prends un tableau de int en 1er argument et notre argument en 2eme
 
         00101987 48 85 ff        TEST       param_1,param_1 ## Check si le tableau param_1 est bien initialisé
 
+
 2 CAS :
+```
 	if tab[0] > notre argument :
  		iVar1 = call fun7 avec l'élement 2 index plus loin que l'actuel
 		iVar1 = iVar1 * 2	
@@ -197,6 +199,7 @@ fun7 prends un tableau de int en 1er argument et notre argument en 2eme
  	puis if tab[0] != notre argument
  		iVar1 = call fun7 avec l'élement 4 index plus loin que l'actuel
 	iVar1 = iVar1 * 2 + 1
+```
 
 Il y a un tableau de tableau, d'ou le (int **)(param_1 + 2) dans les appels récursifs
 J'ai trouvé 7 tableaux différents (dans cet ordre) : n1, n21, n22, n32, n33, n31 et n34
