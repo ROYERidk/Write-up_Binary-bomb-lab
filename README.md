@@ -169,7 +169,8 @@ La première étape sert à vérifier qu'on ne met pas deux fois le même numér
 deuxièmement, le programme va aller chercher la valeur du noeud associé à notre premier argument -> récup la valeur de ce noeud -> aller chercher le noeud associé à notre 2eme argument -> récup la valeur de ce noeud, s'assurer que notre deuxième noeud à une valeur inférieure au premier, ainsi de suite...
 
 Dans l'image suivante on peut observer pour chaque node sa valeur, son numéro puis la suivante.
-<img width="372" height="825" alt="image" src="https://github.com/user-attachments/assets/a644c6a3-b315-46ac-9c28-083bb7f61c0e" />
+
+<img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/a644c6a3-b315-46ac-9c28-083bb7f61c0e" />
 
 
 
@@ -200,7 +201,7 @@ fun7 prends un tableau de int en 1er argument et notre argument en 2eme
 Il y a un tableau de tableau, d'ou le (int **)(param_1 + 2) dans les appels récursifs
 J'ai trouvé 7 tableaux différents (dans cet ordre) : n1, n21, n22, n32, n33, n31 et n34
 Donc, quand on fait un appel à param_1 + x, on accède au tableau à distance x de notre tableau actuel OU alors c'est une chaine car dans ce dumb que j'ai réussi à trouver en me baladant autour de l'adresse de n1 (le premier arguments passé par défault à fun7) :
-<img width="372" height="1625" alt="image" src="https://github.com/user-attachments/assets/c85d2fbd-3c80-415a-97dc-011884bf4142" />
+<img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/c85d2fbd-3c80-415a-97dc-011884bf4142" />
 
 On retrouve un peu la même idée que dans la phase 6. On navigue comme cela : 
 
