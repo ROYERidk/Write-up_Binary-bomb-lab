@@ -193,10 +193,16 @@ fun7 prends un tableau de int en 1er argument et notre argument en 2eme
  		iVar1 = call fun7 avec l'élement 2 index plus loin que l'actuel
 		iVar1 = iVar1 * 2	
  	sinon iVar1 = 0;
- 	puis if tab[0] == notre argument
+ 	puis if tab[0] != notre argument
  		iVar1 = call fun7 avec l'élement 4 index plus loin que l'actuel
 	iVar1 = iVar1 * 2 + 1
- 
+
+Il y a un tableau de tableau, d'ou le (int **)(param_1 + 2) dans les appels récursifs
+J'ai trouvé 7 tableaux différents (dans cet ordre) : n1, n21, n22, n32, n33, n31 et n34
+Donc, quand on fait un appel à param_1 + x, on accède au tableau à distance x de notre tableau actuel OU alors c'est une chaine car dans ce dumb que j'ai réussi à trouver en me baladant autour de l'adresse de n1 (le premier arguments passé par défault à fun7) : <img width="372" height="825" alt="image" src="https://github.com/user-attachments/assets/c85d2fbd-3c80-415a-97dc-011884bf4142" />
+
+
+
 (faut que je dumb le tableau pour pouvoir voir les calculs qui sont fait pour atteindre 5)
 le tableau n1 : <img width="372" height="825" alt="image" src="https://github.com/user-attachments/assets/5fc9948b-e0c0-4a99-9815-b22821662d8f" />
 
