@@ -60,6 +60,56 @@ Solution : Tableau de 6 int : `1 2 4 8 16 32`
 
 ## Phase 3
 
+```
+  switch(local_18) {
+  case 0:
+    iVar1 = 0x274;
+    break;
+  case 1:
+    iVar1 = 0;
+    break;
+  case 2:
+    iVar1 = 0;
+    goto LAB_00101699;
+  case 3:
+    iVar1 = 0;
+    goto LAB_0010169e;
+  case 4:
+    iVar1 = 0;
+    goto LAB_001016a1;
+  case 5:
+    iVar1 = 0;
+    goto LAB_001016a4;
+  case 6:
+    iVar1 = 0;
+    goto LAB_001016a7;
+  case 7:
+    iVar1 = 0;
+    goto LAB_001016aa;
+  default:
+    explode_bomb();
+    iVar1 = 0;
+    goto LAB_001016ad;
+  }
+  iVar1 = iVar1 + -0x24c;
+LAB_00101699:
+  iVar1 = iVar1 + 0x2b0;
+LAB_0010169e:
+  iVar1 = iVar1 + -0x7e;
+LAB_001016a1:
+  iVar1 = iVar1 + 0x7e;
+LAB_001016a4:
+  iVar1 = iVar1 + -0x7e;
+LAB_001016a7:
+  iVar1 = iVar1 + 0x7e;
+LAB_001016aa:
+  iVar1 = iVar1 + -0x7e;
+LAB_001016ad:
+  if ((5 < (int)local_18) || (local_14 != iVar1)) {
+    explode_bomb();
+  }
+```
+
 - 2 arguments : uint, int
 - Utilise un switch/case sur le premier élément (uint)
 - Conditions : notre premier argument doit être inférieur à 5 `(uint < 5)` et notre deuxième argument doit être le résultat du calcul final `(int == calcul fait par le switch/case)`
