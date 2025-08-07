@@ -239,7 +239,7 @@ Il faut donc comprendre qu'il va falloir donner en arguments les noeuds dans l'o
 
 ## Secret Phase
 
-Nous devons ajouter `DrEvil` à la fin du solve de la phase 4 pour arriver dans la phase secrète. (Nous le voyons dans la function `phase_defuse`. 
+Nous devons ajouter `DrEvil` à la fin du solve de la phase 4 pour arriver dans la phase secrète. (Nous le voyons dans la function `phase_defuse` qui fait un appel à la fonction fscanf à une adresse précise). 
 
 Secret phase attends une strings qui sera transformée en un int.
 Ce int doit être < 1000 sinon on explose.
@@ -249,25 +249,40 @@ une fonction `fun7` est appellée, il faudra que son retour soit = 5 pour résou
 ```
         00101987 48 85 ff        TEST       param_1,param_1 ## Check si le tableau param_1 est bien initialisé
 ```
-Pourquoi regarder qu'a chaque passage notre paramètre 1 est bien initialisé ? car dans la suite nous allons voir que le tableau n'est jamais le même.
+Pourquoi regarder qu'a chaque passage notre paramètre 1 est bien initialisé ? car dans la suite nous allons voir que l'adresse du tableau passé en argument n'est jamais le même.
 
+Il existe 3 CAS :
+Nous appelerons `tab` la tableau passé en 1er argument à la fonction `fun7`. 
 
-Il existe 2 CAS :
+notre argument est inférieur à `tab[0]` -> appel récursif de `fun7` avec tab[2] en 1er argument.
+iVar1 est doublé.
+
 ```
 	if tab[0] > notre argument :
  		iVar1 = call fun7 avec l'adresse qui nous donne 2 éléments plus loin notre noeud actuel et toujours notre argument
 		iVar1 = iVar1 * 2	
 ```
+Ivar1 est initialisé à 0
+notre argument est supérieur à `tab[0]` -> appel récursif de `fun7` avec `tab[4]` en 1er argument.
+iVar1 est doublé puis incrémenté.
+
 ```
-	sinon iVar1 = 0;
- 	puis if tab[0] != notre argument
- 		iVar1 = call fun7 avec l'adresse qui nous donne 4 éléments plus loin notre noeud actuel et toujours notre argument
-	iVar1 = iVar1 * 2 + 1
+	Ivar1 = 0;
+ 	if tab[0] != notre argument
+		iVar1 = call fun7 avec l'adresse qui nous donne 4 éléments plus loin notre noeud actuel et toujours notre argument
+		iVar1 = iVar1 * 2 + 1
+```
+
+notre argument vaut `tab[0]`.
+On renvoie 0.
+
+```
+	iVar1 = 0;
 ```
 
 Il y a un tableau de tableau, d'ou le (int **)(param_1 + 2) dans les appels récursifs. <br>
-J'ai trouvé 7 tableaux différents : n1, n21, n22, n31, n32, n33, n34, n41, n42, n43, n44, n45, n46, n47, n48. <br>
-C'est une chaine car dans ce dumb que j'ai réussi à trouver en me baladant autour de l'adresse de n1 (le premier arguments passé par défault à fun7) :
+J'ai trouvé 7 tableaux différents : `n1, n21, n22, n31, n32, n33, n34, n41, n42, n43, n44, n45, n46, n47, n48.` <br>
+C'est une chaine car dans ce dumb que j'ai réussi à trouver en me baladant autour de l'adresse de `n1` (le premier arguments passé par défault à fun7) :
 <img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/c85d2fbd-3c80-415a-97dc-011884bf4142" />
 On retrouve un peu la même idée que dans la phase 6. On navigue comme cela : 
 <br>
@@ -275,16 +290,15 @@ On retrouve un peu la même idée que dans la phase 6. On navigue comme cela :
 <br>
 <img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/c9ec4318-b31e-412d-ab7f-97cd7ac42eca" />
 <br>
-Légende : ROUGE -> noeud, BLEUE -> valeur du noeud, ORANGE -> adresse du noeud n+2, JAUNE -> adresse du noeud n+4.
 
-Le solve est 47 !
 > Légende :  
 > - ROUGE → noeud  
 > - BLEUE → valeur du noeud  
 > - ORANGE → adresse du noeud n+2  
 > - JAUNE → adresse du noeud n+4
 
-**Solution :**  
-`47`
+L'objectif est donc d'avoir la fonction `fun7` qui renvoie la valeur 5, pour ce faire nous devons obtenir le calcul suivant avec les récursions : `0 -> 0 * 2 + 1 (=1) -> 1 * 2 (=2) -> 2 * 2 + 1 (=5)`.
+Donc il nous faut trouver un chiffre à passer en argument qui est supérieur, inférieur ou égale à la valeur du noeud dans lequel nous sommes à chaque étape pour s'assurer de prendre le bon chemin.
+Attention ! certains noeud n'ont pas de suivant et si c'est le cas, un appel récursif renvoie -1 ! (d'oû la vérification que le tableau est bien initialisé au début de `fun7`.
 
----
+**Solution :** `47`
