@@ -1,4 +1,4 @@
-# Work
+# Binary bomb lab write-up
 
 Ce programme exécutable ouvre le fichier en argument, lit une ligne par phase (6 phases), et traite chaque ligne pour désamorcer chaque phase.
 
