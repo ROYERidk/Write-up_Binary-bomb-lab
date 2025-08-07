@@ -60,17 +60,16 @@ Solution : Tableau de 6 int : `1 2 4 8 16 32`
 
 ## Phase 3
 
-Ligne 3 : `4 0`
-
-- Prend la 3ème ligne → 2 arguments : uint, int (sinon explosion)
+- 2 arguments : uint, int
 - Utilise un switch/case sur le premier élément (uint)
-- Conditions : `(uint < 5)` et `(int = calcul fait par le switch/case)`
+- Conditions : notre premier argument doit être inférieur à 5 `(uint < 5)` et notre deuxième argument doit être le résultat du calcul final `(int == calcul fait par le switch/case)`
 
 Explication :
-- Si on prend 4 comme premier argument, on tombe dans le case 4, et sans break, on continue 4 → 5 → 6 → 7.
+- Il y a 7 switch/case et nous ne pouvons pas commencé à l'étape 5 ou plus.
+- Si on prend 4 comme premier argument, on tombe dans le case 4, comme les case sont sans break, on continue à travers les autres 4 → 5 → 6 → 7.
 - Cela donne `eax = 0 + 0x7e - 0x7e + 0x7e - 0x7e = 0`.
-- Donc la troisième ligne doit être :  
-  `4 0`
+
+Solution : `4 0`
 
 ---
 
