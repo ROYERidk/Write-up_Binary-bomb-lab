@@ -10,8 +10,6 @@ Ce programme exécutable ouvre le fichier en argument, lit une ligne par phase (
 - `defuse.txt` (mon fichier que je passe en argument)
 - `gdbcfg`     (Pour se faciliter la vie avec gdb classique)
 
----
-
 ## Sommaire
 
 - [Phase 1](#phase-1)
@@ -22,15 +20,11 @@ Ce programme exécutable ouvre le fichier en argument, lit une ligne par phase (
 - [Phase 6](#phase-6)
 - [Secret Phase](#secret-phase)
 
----
-
 ## Phase 1
 
 Rien de spécial dans cette première phase qui sert d'exemple, la solution est en clair dans le binaire.
 
 **Solution :** `I am just a renegade hockey mom.`
-
----
 
 ## Phase 2
 
@@ -55,8 +49,6 @@ Petit rappel : `local_38[0]` est pareil que `*local_38`, les deux accèdent à l
     - Chaque nombre suivant doit être le double du précédent (tableau à 6 chiffres).
 
 **Solution :** `1 2 4 8 16 32`
-
----
 
 ## Phase 3
 
@@ -120,8 +112,6 @@ Explication :
 - Cela donne `eax = 0 + 0x7e - 0x7e + 0x7e - 0x7e = 0`.
 
 **Solution :** `4 0`
-
----
 
 ## Phase 4
 
@@ -195,8 +185,6 @@ C'est pour cela que 3 rempli son travail, car il crée deux passage dans func4, 
 
 Dans ghidra, on observe directement le calcul, c'est bien plus simple, mais moins intéressant pour s'habituer à manipuler de l'assembleur dans un débugger comme GDB.
 
----
-
 ## Phase 5
 
 Nous avons besoin de 2 int en arguments sinon on explose.
@@ -232,8 +220,6 @@ Il est important de noté que la première valeur (ici 5) n'est pas ajouter à l
 **Solution :** `5 115`
 
 *Note : la première valeur (ici 5) n’est pas ajoutée à la somme finale, elle sert seulement de point de départ.*
-
----
 
 ## Phase 6
 
