@@ -131,7 +131,7 @@ premier argument est passé à la fonction func4 (passé par edi -> rdi)
 
 RAX commence toujours à 0xe(=14)
 ICI j'avais 8 en premier argument
-
+```
 	0x55555555571a <func4+5>:	mov    %edx,%eax			met la valeur de edx dans eax (=14)	
 	0x55555555571c <func4+7>:	sub    %esi,%eax			soustrait esi à eax (14 - 0 = 14)
 	0x55555555571e <func4+9>:	mov    %eax,%ebx			met eax dans ebx (=14)
@@ -142,9 +142,9 @@ ICI j'avais 8 en premier argument
 	0x555555555729 <func4+20>:	cmp    %edi,%ebx			compare ebx par rapport à edi (ebx = 7 > edi = 8) [edi est notre argument donc c'est ici qu'il va falloir savoir si on veut jump à +30 ou +42]
 	0x55555555572b <func4+22>:	jg     0x555555555733 <func4+30>	jg = jump if greater	
 	0x55555555572d <func4+24>:	jl     0x55555555573f <func4+42>	jl = jump if less	DANS CE CAS LA on jump ici, on va à +42
-
+```
 Voici le contenu du programme à +42 :
-	
+```	
  	0x55555555573f <func4+42>:	lea    0x1(%rbx),%esi			calcul rbx + 1 (7 + 1) et l'assigne à esi (incrémente esi) [n'oublions pas que rsi est le deuxième argument passé pour les fonctions, on dirait qu'il incrémente un compteur]
 	0x555555555742 <func4+45>:	call   0x555555555715 <func4>		appel récursif à lui même donc on recommence ce qui se passe au dessus mais esi vaut 1 maintenant
    	0x555555555747 <func4+50>:	add    %eax,%ebx			/*standby*/
@@ -160,12 +160,12 @@ Voici le contenu du programme à +42 :
    	0x555555555729 <func4+20>:	cmp    %edi,%ebx			compare ebx par rapport à edi (ebx = 11 > edi = 8) [edi est notre argument donc c'est ici qu'il va falloir savoir si on veut jump à +30 ou +42]
    	0x55555555572b <func4+22>:	jg     0x555555555733 <func4+30>	jg = jump if greater	DANS CE CAS LA on jump ici, on va à +30
    	0x55555555572d <func4+24>:	jl     0x55555555573f <func4+42>	jl = jump if less	
-
+```
 Voici le contenu du programme à +30 :
-
+```
    	0x555555555733 <func4+30>:	lea    -0x1(%rbx),%edx			rbx -1 dans edx (décrémente rbx)
    	0x555555555736 <func4+33>:	call   0x555555555715 <func4>		appel récursif
-
+```
 /!\ Si ebx = edi -> return /!\
 
 après notre func4 on compare directement eax à 10 (eax 32 bits, rax 64 bits, la valeur de retour)
@@ -173,15 +173,16 @@ si eax != 10 on explose
 donc on veut que eax = 10
 si c'est bon :
 on check si notre deuxième argument vaut 0xa(=10)
-	
+```	
  	0x55555555579e <phase_4+83>:	cmpl   $0xa,0x4(%rsp)	cette ligne compare la valeur contenue à l'adresse rsp+4 avec 10 (on comprends assez logiquement que c'est notre deuxième argument, suffit de la changer pour voir que rsp+4 change. Surtout qu'un int fait 4 bits et que la on accède donc tout pile au deuxième int)
+```
 si oui GG !
 
 Maintenant il faut trouver comment avoir 10 dans rax et c'est GG !
 On ne peut pas avoir plus de 14 en premier argument sinon on explose !
 comme c'est un int -> on peut mettre [0;14]
 
-la solution est "3 10"
+Solution : `3 10`
 
 pourquoi 3 : La première étape de func4 est globalement d'avoir 14 dans edx, de le diviser par 2 avant de le comparer avec notre argument. Donc en observant le code si on peut rapidement trouvé que si on met 3, nous allons tombé dans *jg     0x555555555733 <func4+30>	jg = jump if greater* qui va simplement décrémenté ebx (7 - 1) et faire un appel récursif qui va prendre edx à 6, le diviser par 2 et sortir de notre func4 car 3 == 3.
 Enfin, il faut aussi comprendre que le résultat de la fonction (dans RAX) est l'addition de chaque retour récursif de cette fonction.
