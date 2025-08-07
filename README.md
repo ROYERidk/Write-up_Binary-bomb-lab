@@ -1,4 +1,3 @@
-````markdown name=README.md
 # Work
 
 Ce programme exécutable ouvre le fichier en argument, lit une ligne par phase (6 phases), et traite chaque ligne pour désamorcer chaque phase.
@@ -162,4 +161,3 @@ Les 6 arguments sont dans `R13`.
 `47`
 
 ---
-````
