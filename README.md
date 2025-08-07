@@ -199,27 +199,37 @@ Dans ghidra, on observe directement le calcul, c'est bien plus simple, mais moin
 
 ## Phase 5
 
-2 int en arguments sinon explosion.  
-On nomme les deux arguments respectivement `a` et `b`.
+Nous avons besoin de 2 int en arguments sinon on explose.
+Nous nommerons nos deux argument respectivement `a` et `b`
 
-- Un ET logique est fait entre `a` et `0xf` (modulo 16, seulement les 4 bits de poids faible).
-- `a` ne doit pas être 15 (`0xf`), sinon explosion. Possibilités : `[0;14]`.
-- Deux variables initialisées à 0 : `x` et `y`.
-- Boucle : tant que `a != 0xf`, on incrémente `y`, `a = tab[a]`, puis `x = x + a`.
-- Il faut que `y == 0xf (=15)` et `b == x` après la boucle.
+un ET logique est fait entre `a` et *0xf* puis stocker à la place de ce dernier (seulement les 4 bits de poids faible sont gardés = on fait `a` modulo 16). Ensuite on voit que si `a` vaut 0xf, on explose.
+Si on veut ne pas exploser il faut que `a` contienent au moins un 0 dans les 4 bits de poid faible de sa valeur en binaire donc on exclu simplement 15, il nous reste donc [0;14] comme possibilités.
 
-**Valeurs du tableau à chaque index :**  
-![image](https://github.com/user-attachments/assets/36ac8623-3826-43ef-ae11-1e36f774293a)
+Deux variables sont initialisées à 0 on les nommera respectivement `x` et `y`.
+ensuite on boucle tant que `a` ne vaut pas *0xf*.
 
-**Explication :**
-- On doit faire 15 fois la boucle à l’envers en partant de 0xf pour savoir à quelle valeur démarrer :
+La boucle se décrit comme tel :
+- `y` semble être un compteur qui s'incrémente à chaque passage de boucle
+- `a= tab[a]` tab est un tableau de int dans le binaire à l'adresse de rsi. 
+- enfin, `x = x + a` -> est la somme de chaque valeur de `a` à chaque tour de boucle.
 
-```
-5 (0x12) → 12 (0x3) → 3 (0x7) → 7 (0x11) → 11 (0x13) → 13 (0x9) → 9 (0x4) → 4 (0x8) → 8 (0x0) → 0 (0xa) → 10 (0x1) → 1 (0x2) → 2 (0xe) → 14 (0x6) → 6 (0xf)
-```
+Pour désomorcer cette phase il faut que `y == Oxf` = 15 (15 tour de boucle) et `b == x` [après la boucle]
 
-- La solution est donc :  
-  `5 115`
+Donc pour flag cette 5ème phase, il faut :
+faire exactement 15 tour de boucle ET connaitre à l'avance la somme de chaque `a` à chaque passage de boucle.
+
+Voici le contenu du tableau à chaque index :
+<img width="372" height="825" alt="image" src="https://github.com/user-attachments/assets/36ac8623-3826-43ef-ae11-1e36f774293a" />
+
+Maintenant il faut réfléchir à comment tombé sur 0xf au 15e tour de boucle.
+Il suffit de faire 15 fois la boucle à l'envers en partant de 0xf pour savoir à quelle valeur démarrer : 
+5 (0x12) -> 12 (0x3) -> 3 (0x7) -> 7 (0x11) -> 11 (0x13) -> 13 (0x9) -> 9 (0x4) -> 4 (0x8) -> 8 (0x0) -> 0 (0xa) -> 10 (0x1) -> 1 (0x2) -> 2 (0xe) -> 14 (0x6) -> 6 (0xf)
+
+Il est important de noté que la première valeur (ici 5) n'est pas ajouter à la somme finale, elle sert seulement de points de départ. Donc on additionne en partant de 12.
+
+12 + 3 + 7 + 11 + 13 + 9 + 4 + 8 + 0 + 10 + 1 + 2 + 14 + 6 + 15 = 115.
+
+- Solution : `5 115`
 
 *Note : la première valeur (ici 5) n’est pas ajoutée à la somme finale, elle sert seulement de point de départ.*
 
