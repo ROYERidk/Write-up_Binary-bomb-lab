@@ -7,8 +7,8 @@ Ce programme exécutable ouvre le fichier en argument, lit une ligne par phase (
 - etc...
 
 **Prérequis :**  
-- `defuse.txt`  
-- `gdbcfg`  
+- `defuse.txt` (mon fichier que je passe en argument)
+- `gdbcfg`     (Pour se faciliter la vie avec gdb classique)
 
 ---
 
