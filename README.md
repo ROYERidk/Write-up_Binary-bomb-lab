@@ -237,6 +237,22 @@ Il est important de noté que la première valeur (ici 5) n'est pas ajouter à l
 
 ## Phase 6
 
+On fait refait appel à `read_six_numbers` pour récupérer 6 int qu'on passe depuis notre fichier de solver.
+Nos 6 arguments sont dans R13.
+
+La première étape sert à vérifier qu'on ne met pas deux fois le même nombre dans nos 6 arguments et toujours des nombres < 7.
+
+Deuxièmement, le programme va aller chercher la valeur du noeud associé à notre premier argument -> récupérer la valeur de ce noeud -> aller chercher le noeud associé à notre 2eme argument -> récup la valeur de ce noeud, s'assurer que notre deuxième noeud à une valeur inférieure au premier, ainsi de suite...
+
+Dans l'image suivante on peut observer pour chaque node sa valeur, son numéro puis l'adresse du noeud suivant.
+
+<img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/a644c6a3-b315-46ac-9c28-083bb7f61c0e" />
+Il faut donc comprendre qu'il va falloir donner en arguments les noeuds dans l'ordre décroissant de leur valeur. 
+
+**Solution :** 5 4 3 1 6 2
+
+## Secret Phase
+
 Nous devons ajouter `DrEvil` à la fin du solve de la phase 4 pour arriver dans la phase secrète. (Nous le voyons dans la function `phase_defuse`. 
 
 Secret phase attends une strings qui sera transformée en un int.
