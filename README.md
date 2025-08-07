@@ -237,44 +237,45 @@ Il est important de noté que la première valeur (ici 5) n'est pas ajouter à l
 
 ## Phase 6
 
-Le binaire utilise de nouveau la fonction `read_six_numbers` -> les 6 arguments sont dans `R13`.
+Nous devons ajouter `DrEvil` à la fin du solve de la phase 4 pour arriver dans la phase secrète. (Nous le voyons dans la function `phase_defuse`. 
 
-Première étape : vérifier qu’on ne met pas deux fois le même numéro dans les 6 arguments, et qu’ils sont tous < 7.
+Secret phase attends une strings qui sera transformée en un int.
+Ce int doit être < 1000 sinon on explose.
 
-Ensuite, on observe des appels à une sorte de stucture en chaine.
-On observe sur l'image ci-dessus le dumb des adresses liés à cette structure.
-le premier élément est la valeur du noeud, le deuxième son numéro, la troisième l'adresse du noeud suivant. 
+une fonction `fun7` est appellée, il faudra que son retour soit = 5 pour résoudre cette phase.
+`fun7` prends l'adresse d'un tableau de int en 1er argument et notre argument en 2eme.
+```
+        00101987 48 85 ff        TEST       param_1,param_1 ## Check si le tableau param_1 est bien initialisé
+```
+Pourquoi regarder qu'a chaque passage notre paramètre 1 est bien initialisé ? car dans la suite nous allons voir que le tableau n'est jamais le même.
+
+
+Il existe 2 CAS :
+```
+	if tab[0] > notre argument :
+ 		iVar1 = call fun7 avec l'adresse qui nous donne 2 éléments plus loin notre noeud actuel et toujours notre argument
+		iVar1 = iVar1 * 2	
+```
+```
+	sinon iVar1 = 0;
+ 	puis if tab[0] != notre argument
+ 		iVar1 = call fun7 avec l'adresse qui nous donne 4 éléments plus loin notre noeud actuel et toujours notre argument
+	iVar1 = iVar1 * 2 + 1
+```
+
+Il y a un tableau de tableau, d'ou le (int **)(param_1 + 2) dans les appels récursifs. <br>
+J'ai trouvé 7 tableaux différents : n1, n21, n22, n31, n32, n33, n34, n41, n42, n43, n44, n45, n46, n47, n48. <br>
+C'est une chaine car dans ce dumb que j'ai réussi à trouver en me baladant autour de l'adresse de n1 (le premier arguments passé par défault à fun7) :
+<img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/c85d2fbd-3c80-415a-97dc-011884bf4142" />
+On retrouve un peu la même idée que dans la phase 6. On navigue comme cela : 
 <br>
-**Image des noeuds :**
-![image](https://github.com/user-attachments/assets/a644c6a3-b315-46ac-9c28-083bb7f61c0e)
+<img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/fcb2f67e-cdef-44d3-9974-31713101b13e" />
 <br>
+<img width="1000" height="1000" alt="image" src="https://github.com/user-attachments/assets/c9ec4318-b31e-412d-ab7f-97cd7ac42eca" />
+<br>
+Légende : ROUGE -> noeud, BLEUE -> valeur du noeud, ORANGE -> adresse du noeud n+2, JAUNE -> adresse du noeud n+4.
 
-Le programme va chercher la valeur du noeud associé à chaque argument dans l’ordre donné puis les traversé un par un en vérifiant que la valeur du noeud actuel est inférieure à celle du noeud précédent.
-Nous avons donc besoin de passer les noeuds dans l'ordre décroissant de leur valeur.
-**Solution :** `5 4 3 1 6 2`
-
----
-
-## Secret Phase
-
-- Il faut ajouter `DrEvil` à la fin du solve de la phase 4 pour accéder à la phase secrète.
-- Elle attend une string qui sera transformée en int (< 1000).
-- Une fonction `fun7` est appelée, il faut que son retour soit `5` pour désamorcer la phase.
-
-**Explication du fonctionnement :**
-
-- Si `tab[0] > argument` :  
-   - appel récursif à `fun7` avec l’élément 2 index plus loin, et on multiplie le retour par 2.
-- Sinon, on initialise `iVar1 = 0`, puis si `tab[0] != argument` :  
-   - appel récursif à `fun7` avec l’élément 4 index plus loin, et on multiplie le retour par 2 puis ajoute 1.
-
-- Il y a un tableau de tableaux (int **), avec plusieurs noeuds (`n1, n21, n22, n31, ...`).
-
-**Images explicatives :**  
-![image](https://github.com/user-attachments/assets/c85d2fbd-3c80-415a-97dc-011884bf4142)  
-![image](https://github.com/user-attachments/assets/fcb2f67e-cdef-44d3-9974-31713101b13e)  
-![image](https://github.com/user-attachments/assets/c9ec4318-b31e-412d-ab7f-97cd7ac42eca)
-
+Le solve est 47 !
 > Légende :  
 > - ROUGE → noeud  
 > - BLEUE → valeur du noeud  
