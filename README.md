@@ -26,8 +26,9 @@ Ce programme exécutable ouvre le fichier en argument, lit une ligne par phase (
 
 ## Phase 1
 
-Prends la ligne 1 :  
-`I am just a renegade hockey mom.`
+Rien de spécial dans cette première phase qui sert d'exemple, la solution est en clair dans le binaire.
+
+Solution : `I am just a renegade hockey mom.`
 
 ---
 
