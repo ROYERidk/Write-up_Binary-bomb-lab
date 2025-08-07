@@ -28,7 +28,7 @@ Ce programme exécutable ouvre le fichier en argument, lit une ligne par phase (
 
 Rien de spécial dans cette première phase qui sert d'exemple, la solution est en clair dans le binaire.
 
-Solution : `I am just a renegade hockey mom.`
+**Solution :** `I am just a renegade hockey mom.`
 
 ---
 
@@ -54,7 +54,7 @@ Petit rappel : `local_38[0]` est pareil que `*local_38`, les deux accèdent à l
     - On incrémente `piVar1` pour traverser le tableau tant que nous ne sommes pas à la fin.
     - Chaque nombre suivant doit être le double du précédent (tableau à 6 chiffres).
 
-Solution : Tableau de 6 int : `1 2 4 8 16 32`
+**Solution :** `1 2 4 8 16 32`
 
 ---
 
@@ -119,7 +119,7 @@ Explication :
 - Si on prend 4 comme premier argument, on tombe dans le case 4, comme les case sont sans break, on continue à travers les autres 4 → 5 → 6 → 7.
 - Cela donne `eax = 0 + 0x7e - 0x7e + 0x7e - 0x7e = 0`.
 
-Solution : `4 0`
+**Solution :** `4 0`
 
 ---
 
@@ -182,7 +182,7 @@ Maintenant il faut trouver comment avoir 10 dans rax et c'est GG !
 On ne peut pas avoir plus de 14 en premier argument sinon on explose !
 comme c'est un int -> on peut mettre [0;14]
 
-Solution : `3 10`
+**Solution :** `3 10`
 
 **pourquoi 3** : La première étape de func4 est globalement d'avoir 14 dans `edx`, de le diviser par 2 avant de le comparer avec notre argument. Donc en observant le code si on peut rapidement trouvé que si on met 3, nous allons tombé dans
 <br>
@@ -229,7 +229,7 @@ Il est important de noté que la première valeur (ici 5) n'est pas ajouter à l
 
 12 + 3 + 7 + 11 + 13 + 9 + 4 + 8 + 0 + 10 + 1 + 2 + 14 + 6 + 15 = 115.
 
-- Solution : `5 115`
+**Solution :** `5 115`
 
 *Note : la première valeur (ici 5) n’est pas ajoutée à la somme finale, elle sert seulement de point de départ.*
 
@@ -237,16 +237,21 @@ Il est important de noté que la première valeur (ici 5) n'est pas ajouter à l
 
 ## Phase 6
 
-Les 6 arguments sont dans `R13`.
+Le binaire utilise de nouveau la fonction `read_six_numbers` -> les 6 arguments sont dans `R13`.
 
-- Première étape : vérifier qu’on ne met pas deux fois le même numéro dans les 6 arguments, et qu’ils sont tous < 7.
-- Ensuite, le programme va chercher la valeur du noeud associé à chaque argument dans l’ordre donné.
+Première étape : vérifier qu’on ne met pas deux fois le même numéro dans les 6 arguments, et qu’ils sont tous < 7.
 
-**Image des noeuds :**  
+Ensuite, on observe des appels à une sorte de stucture en chaine.
+On observe sur l'image ci-dessus le dumb des adresses liés à cette structure.
+le premier élément est la valeur du noeud, le deuxième son numéro, la troisième l'adresse du noeud suivant. 
+<br>
+**Image des noeuds :**
 ![image](https://github.com/user-attachments/assets/a644c6a3-b315-46ac-9c28-083bb7f61c0e)
+<br>
 
-**Solution (ordre décroissant des noeuds) :**  
-`5 4 3 1 6 2`
+Le programme va chercher la valeur du noeud associé à chaque argument dans l’ordre donné puis les traversé un par un en vérifiant que la valeur du noeud actuel est inférieure à celle du noeud précédent.
+Nous avons donc besoin de passer les noeuds dans l'ordre décroissant de leur valeur.
+**Solution :** `5 4 3 1 6 2`
 
 ---
 
