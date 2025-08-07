@@ -300,6 +300,6 @@ On retrouve un peu la même idée que dans la phase 6. On navigue comme cela :
 L'objectif est donc d'avoir la fonction `fun7` qui renvoie la valeur 5, pour ce faire nous devons obtenir le calcul suivant avec les récursions : 
 <br> `0 -> 0 * 2 + 1 (=1) -> 1 * 2 (=2) -> 2 * 2 + 1 (=5)`.<br>
 Donc il nous faut trouver un chiffre à passer en argument qui est supérieur, inférieur ou égale à la valeur du noeud dans lequel nous sommes à chaque étape pour s'assurer de prendre le bon chemin.
-Attention ! certains noeud n'ont pas de suivant et si c'est le cas, un appel récursif renvoie -1 ! (d'oû la vérification que le tableau est bien initialisé au début de `fun7`.
+<br>Attention ! certains noeud n'ont pas de suivant et si c'est le cas, un appel récursif renvoie -1 ! (d'oû la vérification que le tableau est bien initialisé au début de `fun7`.
 
 **Solution :** `47`
