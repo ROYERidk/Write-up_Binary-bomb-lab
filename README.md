@@ -39,6 +39,7 @@ Notez que les variable du type `piVarX` & `local_X` sont des variables très cer
 <br>
 La même adresse est assignée à la variable `piVar1`. Donc `local_38` et `piVar1` pointent le même tableau d'entier.  
 
+Petit rappel : `local_38[0]` est pareil que `*local_38`, les deux accèdent à la première valeur du tableau 
 - **Première valeur du tableau doit valoir 1 :**
     ```c
     if (local_38[0] != 1) { explode_bomb(); }
@@ -50,7 +51,7 @@ La même adresse est assignée à la variable `piVar1`. Donc `local_38` et `piVa
     (la deuxième valeur doit être le double de la première)
 
 - **Suite de la logique :**
-    - On incrémente `piVar1` et on continue tant qu'on n'est pas à la fin du tableau.
+    - On incrémente `piVar1` pour traverser le tableau tant que nous ne sommes pas à la fin.
     - Chaque nombre suivant doit être le double du précédent (tableau à 6 chiffres).
 
 Solution : Tableau de 6 int : `1 2 4 8 16 32`
