@@ -34,10 +34,10 @@ Solution : `I am just a renegade hockey mom.`
 
 ## Phase 2
 
-Prends la ligne 2 :  
-Tableau de 6 int : `1 2 4 8 16 32`
-
-Le programme fait appel à une fonction `read_six_numbers` qui met les 6 chiffres entrés dans un tableau nommé `local_38` (sous Ghidra). On assigne la même adresse à `piVar1`, donc on traite le même tableau.
+Le programme fait appel à une fonction `read_six_numbers` qui place les 6 chiffres entrés dans un tableau nommé `local_38` (sous Ghidra).
+Notez que les variable du type `piVarX` & `local_X` sont des variables très certainement générique de Ghidra. Je les utilise dans mes explications pour plus de simplicité. 
+<br>
+La même adresse est assignée à la variable `piVar1`. Donc `local_38` et `piVar1` pointent le même tableau d'entier.  
 
 - **Première valeur du tableau doit valoir 1 :**
     ```c
@@ -52,6 +52,8 @@ Le programme fait appel à une fonction `read_six_numbers` qui met les 6 chiffre
 - **Suite de la logique :**
     - On incrémente `piVar1` et on continue tant qu'on n'est pas à la fin du tableau.
     - Chaque nombre suivant doit être le double du précédent (tableau à 6 chiffres).
+
+Solution : Tableau de 6 int : `1 2 4 8 16 32`
 
 ---
 
